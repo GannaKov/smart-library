@@ -136,7 +136,7 @@
 }
 
 @utility book-btn {
-  @apply mt-3 min-h-14 w-full bg-dark-600 font-bebas-neue text-base text-primary;
+  @apply mt-3 min-h-14 w-full bg-dark-600! font-bebas-neue text-base text-primary;
 }
 
 @utility borrowed-book {
@@ -171,7 +171,7 @@
 
 @utility book-list {
   /* Book List */
-  @apply mt-10 flex flex-wrap gap-5 max-xs:justify-between xs:gap-10;
+  @apply mt-10 flex flex-wrap justify-center gap-5 max-xs:justify-between xs:gap-10;
 }
 
 @utility book-overview {
