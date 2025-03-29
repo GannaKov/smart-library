@@ -1,5 +1,6 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FIELD_NAMES, FIELD_TYPES } from '@/constants';
 import {
   DefaultValues,
   FieldValues,
@@ -22,6 +23,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
+import FileUpload from './FileUpload';
 
 interface Props<T extends FieldValues> {
   schema: ZodType<T>;
@@ -62,24 +64,46 @@ const AuthForm = <T extends FieldValues>({
         >
           {Object.keys(defaultValues).map((field) => (
             <FormField
+              key={field}
               control={form.control}
-              name="username"
+              name={field as Path<T>}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel className="capitalize">
+                    {/* {field.name} */}
+                    {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn" {...field} />
+                    {field.name === 'universityCard' ? (
+                      <FileUpload
+                      // type="image"
+                      // accept="image/*"
+                      // placeholder="Upload your ID"
+                      // folder="ids"
+                      // variant="dark"
+                      // onFileChange={field.onChange}
+                      />
+                    ) : (
+                      <Input
+                        required
+                        type={
+                          FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
+                        }
+                        {...field}
+                        className="form-input"
+                      />
+                    )}
                   </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
+
                   <FormMessage />
                 </FormItem>
               )}
             />
           ))}
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="form-btn">
+            {isSignIn ? 'Sign In' : 'Sign Up'}
+          </Button>
         </form>
       </Form>
       <p className="text-center text-base font-medium">
