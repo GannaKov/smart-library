@@ -14,7 +14,7 @@ const page = () => (
       universityCard: '',
       fullName: '',
     }}
-    onSubmit={() => {}}
+    // onSubmit={() => {}}
   />
 );
 
