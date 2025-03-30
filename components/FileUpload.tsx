@@ -58,6 +58,18 @@ const FileUpload = () => {
         onError={onError}
         onSuccess={onSuccess}
         fileName="test.png"
+        folder={'/smart-library'}
+        validateFile={(file) => {
+          const allowedTypes = [
+            'image/jpeg',
+            'image/png',
+            'image/webp',
+            'image/gif',
+            'image/jpg',
+          ];
+          const maxSize = 2 * 1024 * 1024; // 2MB
+          return allowedTypes.includes(file.type) && file.size <= maxSize;
+        }}
       />
       <button
         className="upload-btn cursor-pointer"
