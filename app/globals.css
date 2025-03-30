@@ -209,7 +209,7 @@
 
 @utility upload-btn {
   /* File Upload */
-  @apply flex min-h-14 w-full items-center justify-center gap-1.5 rounded-md;
+  @apply flex min-h-14 w-full items-center justify-center gap-1.5 rounded-md bg-dark-300!;
 }
 
 @utility upload-filename {
