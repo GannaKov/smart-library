@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 const {
   env: {
     apiEndpoint,
-    // prodApiEndpoint,
+    prodApiEndpoint,
     imagekit: { publicKey, urlEndpoint },
   },
 } = config;
