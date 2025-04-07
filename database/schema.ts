@@ -35,3 +35,7 @@ export const users = pgTable('users', {
     withTimezone: true,
   }).defaultNow(),
 });
+
+export const schema = {
+  users,
+};
