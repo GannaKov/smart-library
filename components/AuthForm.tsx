@@ -1,4 +1,5 @@
 'use client';
+import React, { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FIELD_NAMES, FIELD_TYPES } from '@/constants';
 import {
@@ -10,6 +11,7 @@ import {
   UseFormReturn,
 } from 'react-hook-form';
 import { ZodType } from 'zod';
+import { Eye, EyeOff } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -41,6 +43,7 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: Props<T>) => {
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const isSignIn = type === 'SIGN_IN';
 
@@ -111,6 +114,32 @@ const AuthForm = <T extends FieldValues>({
                         // variant="dark"
                         onFileChange={field.onChange}
                       />
+                    ) : field.name === 'password' ? (
+                      <div className="relative">
+                        {' '}
+                        <Input
+                          required
+                          type={showPassword ? 'text' : 'password'}
+                          {...field}
+                          className="form-input"
+                          // style={{
+                          //   //   backgroundColor: 'white',
+                          //   WebkitBackgroundClip: 'text',
+                          //   WebkitTextFillColor: 'white',
+                          // }}
+                        />
+                        <button
+                          type="button"
+                          className="absolute top-1/2 right-2 -translate-y-1/2 transform"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? (
+                            <EyeOff size={20} />
+                          ) : (
+                            <Eye size={20} />
+                          )}
+                        </button>
+                      </div>
                     ) : (
                       <Input
                         required
