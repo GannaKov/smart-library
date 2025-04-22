@@ -1,11 +1,14 @@
 'use client';
 import React from 'react';
-import { cn } from '@/lib/utils';
+import { cn, getInitials } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+//AvatarImage is not used in this component, but it is imported for future use
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Session } from 'next-auth';
 
-const Header = () => {
+const Header = ({ session }: { session: Session }) => {
   const pathname = usePathname();
   return (
     <header className="my-10 flex justify-between gap-5">
@@ -22,6 +25,16 @@ const Header = () => {
             )}
           >
             Library
+          </Link>
+        </li>
+        <li>
+          <Link href="/my-profile">
+            <Avatar>
+              {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
+              <AvatarFallback className="bg-amber-100">
+                {getInitials(session?.user?.name || 'IN')}
+              </AvatarFallback>
+            </Avatar>
           </Link>
         </li>
       </ul>
