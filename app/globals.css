@@ -4,6 +4,26 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  background-color: transparent !important;
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+} */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  /* -webkit-background-clip: text; */
+  background-color: #232839 !important;
+  caret-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white !important;
+}
+
 @theme {
   --font-ibm-plex-sans: IBM Plex Sans, sans-serif;
   --font-bebas-neue: var(--bebas-neue);
